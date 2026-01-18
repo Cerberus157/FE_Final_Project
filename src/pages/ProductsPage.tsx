@@ -17,6 +17,7 @@
 import { useState } from "react";
 import ProductList from "../components/products/ProductList";
 import type { Product } from "../types/Product";
+import { Link } from "react-router-dom";
 
 interface Props {
   products: Product[];
@@ -63,7 +64,7 @@ const ProductsPage = ({ products, onDelete, loading, onAddToCart }: Props) => {
     console.error("Error applying price filters:", error);
     alert(
       "There was a problem applying the price filters. " +
-        "Please check your input values."
+      "Please check your input values."
     );
   }
 
@@ -99,7 +100,7 @@ const ProductsPage = ({ products, onDelete, loading, onAddToCart }: Props) => {
     console.error("Error sorting products:", error);
     alert(
       "There was a problem sorting the products. " +
-        "Please try a different sorting option."
+      "Please try a different sorting option."
     );
   }
 
@@ -111,8 +112,9 @@ const ProductsPage = ({ products, onDelete, loading, onAddToCart }: Props) => {
       <h1 className="mb-4">Products</h1>
 
       {/* ========================================================
-          Search Bar + Filter Button
+          Search Bar + Filter Button + Create Button
          ======================================================== */}
+
       <div className="d-flex justify-content-between align-items-center mb-3">
         {/* Search Input */}
         <input
@@ -124,23 +126,31 @@ const ProductsPage = ({ products, onDelete, loading, onAddToCart }: Props) => {
           style={{ maxWidth: "300px" }}
         />
 
-        {/* Filter Button with Badge */}
-        <button
-          className="btn btn-outline-secondary position-relative"
-          onClick={() => setShowFilters(true)}
-        >
-          ⚙️ Filters
+        {/* Right-side actions */}
+        <div className="d-flex align-items-center gap-2">
+          {/* ✅ Create New Item */}
+          <Link to="/products/new" className="btn btn-primary">
+            ➕ Create New Item
+          </Link>
 
-          {activeFilters > 0 && (
-            <span
-              className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary"
-              style={{ fontSize: "0.65rem" }}
-            >
-              {activeFilters}
-            </span>
-          )}
-        </button>
+          {/* Filter Button with Badge */}
+          <button
+            className="btn btn-outline-secondary position-relative"
+            onClick={() => setShowFilters(true)}
+          >
+            ⚙️ Filters
+            {activeFilters > 0 && (
+              <span
+                className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary"
+                style={{ fontSize: "0.65rem" }}
+              >
+                {activeFilters}
+              </span>
+            )}
+          </button>
+        </div>
       </div>
+
 
       {/* ========================================================
           Filter Panel (Slide‑In)
