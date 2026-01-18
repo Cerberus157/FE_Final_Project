@@ -73,7 +73,7 @@ Key Learnings
 - Experience managing multi‑page routing and state flow
 
 Getting Started
-- git clone (GIT LINK HERE)
+- git clone ([GIT LINK HERE](https://github.com/Cerberus157/FE_Final_Project.git))
 - cd shopping-app
 - npm install
 - npm run dev
